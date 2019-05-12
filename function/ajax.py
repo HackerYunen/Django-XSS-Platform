@@ -22,7 +22,6 @@ def ajax_letter_value_func(username,letter_id):
 
 def ajax_delete_letter_func(username,letter_id):
     try:
-        print(username,letter_id)
         Letter.objects.get(owner=username,id=letter_id).delete()               #删除信封
         return 'True'
     except:
@@ -30,11 +29,15 @@ def ajax_delete_letter_func(username,letter_id):
 
 def ajax_delete_project_func(username,project_id):
     try:
-        Letter.objects.get(owner=username,project_id=project_id).delete()      #删除项目信封
         Project.objects.get(owner=username,project_id=project_id).delete()     #删除项目
-        return 'True'
     except:
         return '禁止越权删除'
+    try:
+        Letter.objects.get(owner=username,project_id=project_id).delete()      #删除项目信封
+    except:
+        pass
+    return 'True'
+
 
 def ajax_payload_explain_func(payload_name):
     try:
