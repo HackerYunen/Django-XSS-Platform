@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>XSS平台</title>
+  <link rel="stylesheet" href="{% static 'user/vendors/iconfonts/mdi/css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'user/vendors/css/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" href="{% static 'user/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'user/css/tasksform.css' %}">
+  <link rel="shortcut icon" href="{% static 'user/images/favicon.png' %}" />
+</head>
+<body>
+  <div class="container-scroller">
+    <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo" href="/user"><img src="{% static 'user/images/logo.svg' %}" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="/user"><img src="{% static 'user/images/logo-mini.svg' %}" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-stretch">
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" id="profileDropdown" href="/user" data-toggle="dropdown" aria-expanded="false">
+              <div class="nav-profile-img">
+                <img src="/static/user/images/faces/face.jpg" alt="image">
+                <span class="availability-status online"></span>             
+              </div>
+              <div class="nav-profile-text">
+                <p class="mb-1 text-black">{{ request.user.username }}</p>
+              </div>
+            </a>
+            <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item" name="Userinfo" >
+                <i class="mdi mdi-cached mr-2 text-success"></i>
+                修改密码
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/user/logout/">
+                <i class="mdi mdi-logout mr-2 text-primary"></i>
+                退出用户
+              </a>
+            </div>
+          </li>
+          <li class="nav-item d-none d-lg-block full-screen-link">
+            <a class="nav-link">
+              <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+            </a>
+          </li>
+          <li class="nav-item nav-logout d-none d-lg-block">
+            <a class="nav-link" href="/user/logout/">
+              <i class="mdi mdi-power"></i>
+            </a>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <div class="container-fluid page-body-wrapper">
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+              <div class="nav-profile-image">
+                <img src="/static/user/images/faces/face.jpg" alt="profile">
+                <span class="login-status online"></span>
+              </div>
+              <div class="nav-profile-text d-flex flex-column">
+                <span class="font-weight-bold mb-2">{{ request.user.username }}</span>
+				<span class="text-secondary text-small">用户中心</span>
+              </div>
+              <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/">
+              <span class="menu-title">首页</span>
+              <i class="mdi mdi-home menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/project/">
+              <span class="menu-title">项目列表</span>
+              <i class="mdi mdi-table-large menu-icon"></i>
+            </a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="/user/addproject/">
+              <span class="menu-title">添加项目</span>
+              <i class="mdi mdi-plus menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item sidebar-actions">
+            <span class="nav-link">
+              <div class="border-bottom">
+                <h6 class="font-weight-normal mb-3">XSS平台</h6>                
+              </div>
+              <a href="/user/addproject/"><button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ 添加项目</button></a>
+			  <a href="#">
+				<button class="btn btn-block btn-outline-dark btn-icon-text mt-4">
+				  <i class="mdi mdi-github-circle btn-icon-prepend mdi-36px"></i>
+				  <span class="d-inline-block text-left">
+					<small class="font-weight-light d-block">Code At</small>
+					Github
+				  </span>
+				</button>
+			  </a>
+              <div class="mt-4">
+                <div class="border-bottom">
+                  <p class="text-secondary">XSS平台</p>                  
+                </div>
+                <ul class="gradient-bullet-list mt-4">
+                  <li>Made by Yunen</li>
+                </ul>
+              </div>
+            </span>
+          </li>
+        </ul>
+      </nav>
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="page-header">
+		    <i class="mdi mdi-table-large"></i>
+			<h3 class="display-3">项目详情</h3>
+			<i class="mdi mdi-table-large"></i>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">Letter table</h3>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>
+                          接收时间
+                        </th>
+                        <th>
+                          IP
+                        </th>
+                        <th>
+                          Referer
+                        </th>
+                        <th>
+                          Method
+                        </th>
+						<th>
+						  User-Agent
+						</th>
+						<th>
+						  状态
+						</th>
+						<th>
+						  内容
+						</th>
+						<th>
+						  删除
+						</th>
+                      </tr>
+                    </thead>
+					<tbody>
+					{% for letter in letter_list %}
+					  <tr>
+						<td>
+							{{ letter.0 }}
+                        </td>
+						<td>
+							{{ letter.1 }}
+                        </td>
+						<td>
+							{{ letter.2 }}
+                        </td>
+						<td>
+							{{ letter.3 }}
+                        </td>
+						<td>
+							{{ letter.4 }}
+                        </td>
+						<td>
+						{% if letter.5 == "True" %}
+							未读
+						{% else %}
+							已读
+						{% endif %}
+                        </td>
+						<td>
+						  <button type="button" class="btn btn-gradient-success btn-fw" id="lettervalue" name="letterid" value="{{ letter.6}}">查看详情</button>
+						</td>
+						<td>
+						  <button type="button" class="btn btn-gradient-danger btn-rounded btn-icon" name="delletter" value="{{ letter.6 }}"><i class="mdi mdi-delete"></i></button>
+						</td>
+                      </tr>
+					{% endfor %}
+					</tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+		<footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2019 <a href="http://www.0x002.com/" target="_blank">Made by Yunen</a><!-- 版权 -->. All rights reserved. </span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+  <div id="Letterinfo" class="col-md-6 grid-margin stretch-card row1">
+  <code>信封内容</code><a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+  <blockquote class="blockquote">
+  <p class="mb-0" style="text-align: center" >Thank you for using this tool.</p>
+  </blockquote>
+  <div class="form-group">
+	<textarea class="form-control" rows="15" id="value" ></textarea>
+</div>
+  </div>
+  <div id="Failchange" class="col-md-6 grid-margin stretch-card row1">
+	<code>Fail</code><a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+  </div>
+  <div id="Userinfo" class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">修改密码</h4>
+      <p class="card-description">
+        如果遇到任何问题，请联系管理员.
+      </p>
+      <form class="forms-sample">
+        <div class="form-group">
+          <label for="exampleInputUsername1">用户名</label>
+          <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username" value="{{ request.user.username }}" readonly="readonly">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">旧密码</label>
+          <input id="oldpass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">新密码</label>
+          <input id="changepass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputConfirmPassword1">确认密码</label>
+          <input id="passcopy" type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
+        </div>
+        <button name="changepass" type="button" class="btn btn-gradient-primary mr-2">提交</button>
+        <button name="closechange" type="button" class="btn btn-light">取消</button>
+      </form>
+    </div>
+  </div>
+  </div>
+  <script src="{% static 'user/vendors/js/vendor.bundle.base.js' %}"></script>
+  <script src="{% static 'user/vendors/js/vendor.bundle.addons.js' %}"></script>
+  <script src="{% static 'user/js/off-canvas.js' %}"></script>
+  <script src="{% static 'user/js/misc.js' %}"></script>
+  <script src="{% static 'user/js/dashboard.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<head>
+	<link rel="stylesheet" href="{% static 'index/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'index/css/style.css' %}">
+</head>
+<body>
+	<div id="wrapper" class="wrapper">	
+		<span class="cursor"></span>
+		<header class="header sticky-header fixed-header">
+			<div class="container">
+				<div class="header-inner d-none d-lg-flex">
+					<div class="header-logo"></div>
+					<div class="header-navigation">
+						<button class="header-navigation-trigger"><span></span><span></span><span></span><span></span></button>
+						<nav class="main-navigation is-visible">
+							<ul>
+								<li><a href="#">首页</a></li>
+								<li><a href="/user/login">登录</a></li>
+								<li><a href="/user/register">注册</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="hero-area bg-white">
+			<div class="container">
+				<div class="hero-area-inner">
+					<div class="hero-area-text">
+						<h1>
+							HELLO, <br>
+							I AM  MAKX  REZ...
+						</h1>
+						<h5>PROFESSIONAL _WEB DESIGNER & DEVELOPER</h5>
+						<a href="#" class="readmore">ABOUT ME</a>
+					</div>
+					<div class="hero-area-image">
+						<img src="{% static 'index/img/slider-image-1.png' %}" alt="man mask">
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="footer-area bg-white">
+			<div class="container">
+				<ul class="footer-inner">
+					<li>34/5 evergreen road, concord city <br> New work, United States</li>
+					<li>Power by xxxCMS</li>
+				</ul>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>
