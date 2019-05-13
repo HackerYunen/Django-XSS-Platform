@@ -1,17 +1,30 @@
-import time,base64
+import time,base64,json
 from .filter import XSS_filter
 from .models import Letter,Project
 from config import Email_open
 from .email import send_mail
 from django.contrib.auth.models import User
+from .filter import Value_check
 
 def get_victim_info_func(request):
     if request.method == 'GET':                                               #根据不同请求方式获取id、value
         project_id = request.GET.get('id')
         rev_value = request.GET.get('value')
+        if not Value_check(project_id,rev_value):
+            return '请检查字段是否完整'
     elif request.method == 'POST':
         project_id = request.POST.get('id')
         rev_value = request.POST.get('value')
+        if not Value_check(project_id,rev_value):                              #兼顾json格式的post数据
+            try:
+                print(len(request.body))
+                json_list = json.loads(request.body)
+                project_id= json_list['id']
+                rev_value = json_list['value']
+                if not Value_check(project_id, rev_value):
+                    return '请检查字段是否完整'
+            except:
+                return '请检查字段是否完整'
     else:
         project_id = ''
         rev_value = ''

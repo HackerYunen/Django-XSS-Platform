@@ -76,33 +76,34 @@ def show_letter(request):                                                       
 def ajax_letter_value(request):                                                      #Ajax获取信封内容
     username = request.user.username
     if not Method_check(request,'POST'):                                             #限制请求方式
-        return HttpResponse('请求方式错误')
+        return HttpResponse('{"status":500,"value":"请求方式错误"}')
     letter_id = request.POST.get('letterid')
     if not Value_check(letter_id):                                                   #检查字段完整
-        return HttpResponse('请检查字段是否填写完整')
+        return HttpResponse('{"status":500,"value":"请检查字段是否填写完整"}')
     result = ajax_letter_value_func(username,letter_id)
-    return HttpResponse(result)
+    return HttpResponse('{' + '"status":{0},"value":"{1}"'.format(result[0], result[1]) + '}')
 
 @login_required
 def ajax_payload_explain(request):                                                   #Ajax获取explain
     if not Method_check(request,'POST'):                                             #限制请求方式
-        return HttpResponse('请求方式错误')
+        return HttpResponse('{"status":500,"value":"请求方式错误"}')
     payload_name = request.POST.get('payload_name')
     if not Value_check(payload_name):                                                #检查字段完整
-        return HttpResponse('请检查字段是否填写完整')
+        return HttpResponse('{"status":500,"value":"请检查字段是否填写完整"}')
     result = ajax_payload_explain_func(payload_name)
-    return HttpResponse(result)
+    return HttpResponse('{'+'"status":{0},"value":"{1}","parameter":"{2}"'.format(
+                        result[0],result[1],result[2])+'}')
 
 @login_required
 def ajax_delete_letter(request):                                                     #删除信封
     if not Method_check(request,'POST'):                                             #限制请求方式
-        return HttpResponse('请求方式错误')
+        return HttpResponse('{"status":500,"value":"请求方式错误"}')
     username = request.user.username
     letter_id = request.POST.get('letterid')
     if not Value_check(letter_id):                                                   #检查字段完整
-        return HttpResponse('请检查字段是否填写完整')
+        return HttpResponse('{"status":500,"value":"请检查字段是否填写完整"}')
     result = ajax_delete_letter_func(username,letter_id)
-    return HttpResponse(result)
+    return HttpResponse('{' + '"status":{0},"value":"{1}"'.format(result[0], result[1]) + '}')
 
 @login_required
 def ajax_delete_project(request):                                                     #删除项目
@@ -111,9 +112,9 @@ def ajax_delete_project(request):                                               
     username = request.user.username
     project_id = request.POST.get('projectid')
     if not Value_check(project_id):                                                   #检查字段完整
-        return HttpResponse('请检查字段是否填写完整')
+        return HttpResponse('{"status":500,"value":"请检查字段是否填写完整"}')
     result = ajax_delete_project_func(username,project_id)
-    return HttpResponse(result)
+    return HttpResponse('{' + '"status":{0},"value":"{1}"'.format(result[0], result[1]) + '}')
 
 @login_required
 def ajax_add_project(request):
@@ -126,13 +127,20 @@ def ajax_add_project(request):
     send_email = request.POST.get('send_email').title()
     diy_payload = request.POST.get('diy_payload')
     keep_alive = request.POST.get('keep_alive')
+    parameter = request.POST.get('parameter')
     if not Value_check(name,describe,payload,send_email):                             #检查字段完整
-        return HttpResponse('请检查字段是否填写完整')
+        return HttpResponse('{"status":500,"value":"请检查字段是否填写完整"}')
     if diy_payload==None:
         if(keep_alive!='True'):
-            result = ajax_add_project_func(username,name,describe,payload,send_email)
+            if Value_check(parameter):
+                result = ajax_add_project_func(username, name, describe, payload, send_email,
+                           parameter=parameter)
+            else:
+                result = ajax_add_project_func(username,name,describe,payload,send_email)
         else:
-            result = ajax_add_project_func(username,name,describe,payload,send_email,keep_alive=keep_alive.title())
+            result = ajax_add_project_func(username,name,describe,payload,send_email,
+                                           keep_alive=keep_alive.title())
     else:
-        result = ajax_add_project_func(username,name,describe,payload,send_email,diy_payload=diy_payload)
-    return HttpResponse(result)
+        result = ajax_add_project_func(username,name,describe,payload,send_email,
+                                           diy_payload=diy_payload)
+    return HttpResponse('{'+'"status":{0},"value":"{1}"'.format(result[0],result[1])+'}')

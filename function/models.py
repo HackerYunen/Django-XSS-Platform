@@ -4,6 +4,7 @@ class Payload(models.Model):                                #Payload表
     name = models.CharField(max_length=30)
     filename = models.CharField(max_length=100)
     explain = models.CharField(max_length=200)
+    parameter = models.CharField(max_length=100)
 
 class Project(models.Model):                                 #项目表
     project_id = models.CharField(max_length=10)
@@ -16,12 +17,13 @@ class Project(models.Model):                                 #项目表
     short_url = models.CharField(max_length=30)
     keep_alive = models.CharField(max_length=5)
     diy_payload = models.CharField(max_length=10000)
+    payload_parameter = models.CharField(max_length=200)
 
 class Letter(models.Model):                                   #信封表
     time = models.CharField(max_length=50)
     owner = models.CharField(max_length=10)
     project_id = models.CharField(max_length=10)
-    rev_value = models.CharField(max_length=10000)
+    rev_value = models.TextField()
     ip = models.CharField(max_length=15)
     method = models.CharField(max_length=6)
     referer = models.CharField(max_length=50)

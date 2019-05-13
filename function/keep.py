@@ -16,7 +16,10 @@ def hours_before():
 def create_queue():                                                                    #从数据库查询需要操作的信封
     Letter_queue = queue.Queue()                                                       #并加入到任务队列中
     lowest_time = hours_before()
-    keep_letter = Letter.objects.filter(status='True',time__gt=lowest_time).values_list('referer','ua','rev_value')
+    try:
+        keep_letter = Letter.objects.filter(status='True',time__gt=lowest_time,keep_alive='True').values_list('referer','ua','rev_value')
+    except:
+        return Letter_queue
     letter_list = list(keep_letter)
     for x in letter_list:
         Letter_queue.put(x)
