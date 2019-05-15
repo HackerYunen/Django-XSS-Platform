@@ -48,8 +48,8 @@ def ajax_payload_explain_func(payload_name):
     except:
         return ['500','查询失败','查询失败']
                                                                                #添加项目
-def ajax_add_project_func(username,name,describe,payload,send_email
-                          ,parameter='',diy_payload='',keep_alive='False'):
+def ajax_add_project_func(username,name,describe,payload,send_email,
+                          parameter,diy_payload,keep_alive):
     project_id = rand_id()                                                     #生成随机十位ID
     payload_url = Domain + 'js?id=' + project_id
     if App_open == True:

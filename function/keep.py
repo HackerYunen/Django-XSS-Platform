@@ -41,6 +41,7 @@ def keep_alive():
                 pass
         if task_queue.empty() == True:
             time.sleep(2)
+
 if Keep_open:
     t1 = threading.Thread(target=keep_alive)
     t1.setDaemon(True)                                                                   #设置守护线程

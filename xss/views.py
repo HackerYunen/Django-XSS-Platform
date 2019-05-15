@@ -15,7 +15,7 @@ def show_pyload(request):
     else:
         project_id = 1
     payload = show_payload_func(project_id)
-    return HttpResponse(payload)
+    return HttpResponse(payload,content_type='text/plain')
 
 def rev_value(request):
     status = rev_letter_func(request)

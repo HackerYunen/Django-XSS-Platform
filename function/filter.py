@@ -1,7 +1,7 @@
 import re
 
 def XSS_filter(value):                                              #XSS检测
-    black_list = '^[\<\>]+$'
+    black_list = '.*?(<|>)+.*?'
     if re.match(black_list,value):
         return False
     return True
@@ -22,3 +22,9 @@ def Value_check(*args):                                             #检测数�
         if x is None or x == '':
             return False
     return True
+
+def None_to_Blank(args_list):                                       #将None转化为空白
+    for x in range(0,len(args_list)):
+        if args_list[x] is None:
+            args_list[x] = ''
+    return args_list

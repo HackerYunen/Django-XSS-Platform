@@ -36,7 +36,7 @@ def get_victim_info_func(request):
     result = [project_id, rev_value, victim_time, victim_ip, victim_method, victim_referer, victim_UA]
     for x in range(0,len(result)):                                            #防止XSS爆菊，将含有<>的内容转成base64
         if not XSS_filter(result[x]):
-            result[x] = base64.b64encode(result[x])
+            result[x] = base64.b64encode(result[x].encode('utf-8'))
     return result
 
 def rev_letter_func(request):
