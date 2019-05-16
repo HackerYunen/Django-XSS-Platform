@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 16/05/2019 01:04:09
+ Date: 16/05/2019 22:55:46
 */
 
 SET NAMES utf8mb4;
@@ -265,7 +265,7 @@ CREATE TABLE `function_letter`  (
   `ua` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `status` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of function_letter
@@ -276,6 +276,19 @@ INSERT INTO `function_letter` VALUES (11, '2019-05-15 13:32:42', 'test', 'DuhJzS
 INSERT INTO `function_letter` VALUES (12, '2019-05-15 13:45:06', 'test', 'DTCgX7xZYl', 'b\'bG9jYXRpb249aHR0cDovLzEyNy4wLjAuMS9jdGYvfHx8fGlwPTE5Mi4xNjguMS4yMjA=\'', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0', 'True');
 INSERT INTO `function_letter` VALUES (13, '2019-05-15 13:48:07', 'test', 'DTCgX7xZYl', 'location=http://127.0.0.1/ctf/||||ip=192.168.1.220', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0', 'True');
 INSERT INTO `function_letter` VALUES (14, '2019-05-15 13:48:31', 'test', 'DTCgX7xZYl', 'location=http://127.0.0.1/ctf/||||ip=192.168.1.220', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0', 'True');
+INSERT INTO `function_letter` VALUES (15, '2019-05-16 14:13:11', 'test', '3eeJsu6Pdy', 'http://127.0.0.1/ctf/', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'True');
+INSERT INTO `function_letter` VALUES (16, '2019-05-16 14:13:53', 'test', '3eeJsu6Pdy', 'http://127.0.0.1/ctf/', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'True');
+INSERT INTO `function_letter` VALUES (17, '2019-05-16 14:14:27', 'test', '3eeJsu6Pdy', 'http://127.0.0.1/ctf/', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'True');
+INSERT INTO `function_letter` VALUES (18, '2019-05-16 14:14:30', 'test', '3eeJsu6Pdy', 'http://127.0.0.1/ctf/', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'True');
+INSERT INTO `function_letter` VALUES (19, '2019-05-16 14:15:05', 'test', '3eeJsu6Pdy', 'http://127.0.0.1/ctf/', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'True');
+INSERT INTO `function_letter` VALUES (20, '2019-05-16 14:15:05', 'test', '3eeJsu6Pdy', 'http://127.0.0.1/ctf/', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'True');
+INSERT INTO `function_letter` VALUES (21, '2019-05-16 14:15:59', 'test', '3eeJsu6Pdy', 'http://127.0.0.1/ctf/', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'True');
+INSERT INTO `function_letter` VALUES (22, '2019-05-16 14:15:59', 'test', '3eeJsu6Pdy', 'http://127.0.0.1/ctf/||||bbb=', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'True');
+INSERT INTO `function_letter` VALUES (23, '2019-05-16 14:20:35', 'test', '3eeJsu6Pdy', 'http://127.0.0.1/ctf/||||bbb=', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'True');
+INSERT INTO `function_letter` VALUES (24, '2019-05-16 14:20:37', 'test', '3eeJsu6Pdy', 'http://127.0.0.1/ctf/||||bbb=', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'True');
+INSERT INTO `function_letter` VALUES (25, '2019-05-16 22:32:44', 'test', 'e4q7MAQEn4', 'weidu=29.5997||||jingdu=106.2924', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0', 'False');
+INSERT INTO `function_letter` VALUES (26, '2019-05-16 22:52:47', 'test', 'JAxDvOOJZC', 'localStorage={}', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'False');
+INSERT INTO `function_letter` VALUES (27, '2019-05-16 22:53:09', 'test', 'JAxDvOOJZC', 'localStorage={}', '127.0.0.1', 'GET', 'http://127.0.0.1/ctf/', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'False');
 
 -- ----------------------------
 -- Table structure for function_payload
@@ -288,7 +301,7 @@ CREATE TABLE `function_payload`  (
   `explain` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `parameter` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of function_payload
@@ -299,6 +312,11 @@ INSERT INTO `function_payload` VALUES (3, '取页面截图', 'htmlimg.js', '网�
 INSERT INTO `function_payload` VALUES (4, '键盘记录', 'test.js', '记录用户的键盘记录', '');
 INSERT INTO `function_payload` VALUES (5, '指定页面源码获取', 'gethtml2.js', '获取指定页面的Html源码，必填参数：filename(获取的页面)', 'filename');
 INSERT INTO `function_payload` VALUES (6, '获取内网IP', 'getlanip.js', '获取内网IP信息<br>注：Chrome下测试失败，Firefox测试成功，其他自测', '');
+INSERT INTO `function_payload` VALUES (7, '获取页面全部input标签信息', 'getinputs.js', '读取页面全部input标签的信息，必填参数：timeout(时间延迟，单位：毫秒)<br>注：1s为1000毫秒', 'timeout');
+INSERT INTO `function_payload` VALUES (8, '播放音乐', 'music.js', '在嵌入的页面播放一段音乐，必填参数：music_url', 'music_url');
+INSERT INTO `function_payload` VALUES (9, 'CSRF', 'postdata.js', '以用户的会话信息发送请求，必填参数：url，postdata(请将请求内容进行base64编码转换)', 'url&postdata');
+INSERT INTO `function_payload` VALUES (10, '获取经纬度信息', 'location.js', '获取用户的位置信息，Chrome下测试失败，Firefox测试成功', '');
+INSERT INTO `function_payload` VALUES (11, '取localStorage内容', 'localstorage.js', '获取本地localStorage内容', '');
 
 -- ----------------------------
 -- Table structure for function_project
@@ -318,7 +336,7 @@ CREATE TABLE `function_project`  (
   `diy_payload` varchar(10000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `payload_parameter` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of function_project
@@ -328,5 +346,9 @@ INSERT INTO `function_project` VALUES (7, '28m9CPkRFs', '333', 'test', '444', '2
 INSERT INTO `function_project` VALUES (9, 'DuhJzSgL0H', '2222', 'test', '3333', '2019-05-15 13:05:19', '指定页面源码获取', 'False', 'http://c7.gg/f6M9t', 'False', '', 'filename=index.html');
 INSERT INTO `function_project` VALUES (10, 'DTCgX7xZYl', '3333', 'test', '3333', '2019-05-15 13:42:29', '获取内网IP', 'False', 'http://c7.gg/f6MLx', 'False', '', '');
 INSERT INTO `function_project` VALUES (11, 'NqqgkW8awt', '2222', 'test', '3333', '2019-05-15 14:58:53', '基础Payload', 'False', 'http://c7.gg/f6Nn9', 'False', '', '');
+INSERT INTO `function_project` VALUES (12, '3eeJsu6Pdy', '3333', 'test', '4444', '2019-05-16 14:11:48', '获取页面全部input标签信息', 'False', 'http://c7.gg/f6Usb', 'False', '', '');
+INSERT INTO `function_project` VALUES (13, '7mApxveGlK', '2222', 'test', '23323', '2019-05-16 21:26:14', 'CSRF', 'False', 'http://c7.gg/f6W7h', 'False', '', 'url=http://127.0.0.1/&postdata=YWFhYT1iYmJi');
+INSERT INTO `function_project` VALUES (14, 'e4q7MAQEn4', '3333', 'test', '2222', '2019-05-16 22:28:06', '获取经纬度信息', 'False', 'http://c7.gg/f6WR4', 'False', '', '');
+INSERT INTO `function_project` VALUES (15, 'JAxDvOOJZC', '2222', 'test', '333', '2019-05-16 22:51:50', '取localStorage内容', 'False', 'http://c7.gg/f6Xdj', 'False', '', '');
 
 SET FOREIGN_KEY_CHECKS = 1;
